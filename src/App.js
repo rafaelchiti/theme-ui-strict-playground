@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/** @jsx messi */
+import { jsx, ThemeProvider } from "theme-ui";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={myTheme}>
+      <div sx={{ backgroundColor: "lenny", padding: 1 }}>Hello</div>
+    </ThemeProvider>
   );
 }
 
 export default App;
+
+var messi = function (type, props) {
+  var children = [],
+    len = arguments.length - 2;
+  while (len-- > 0) children[len] = arguments[len + 2];
+
+  return jsx.apply(undefined, [type, props].concat(children));
+};
+
+//
+//
+const myTheme = {
+  styles: {
+    root: {
+      backgroundColor: "white",
+    },
+  },
+  colors: {
+    lenny: "red",
+    vitor: "blue",
+  },
+  space: ["10px", "50px"],
+};
